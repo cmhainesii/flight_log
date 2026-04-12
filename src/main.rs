@@ -18,9 +18,7 @@ struct SimpleObject {
 struct FlightLog {
     id: Uuid,
     planned_departure_time: String,
-    actual_departure_time: String,
     planned_arrival_time: String,
-    actual_arrival_time: String,
     flight_number: String,
     cruise_altitude: String,
     departure_airport: String,
@@ -38,6 +36,7 @@ fn main() {
     // Create a new flight plan via command line interface!
     let id = Uuid::new_v4();
 
+
     let datetime_validator = |input: &str| -> Result<Validation, CustomUserError> {
         match NaiveDateTime::parse_from_str(input, "%Y-%m-%d %H:%M") {
             Ok(_) => Ok(Validation::Valid),
@@ -45,13 +44,40 @@ fn main() {
         }
     };
 
+    let flight_number_validator = |input: &str| -> Result<Validation, CustomUserError> {
+        match input.parse::<u32>() {
+            Ok(num) if num >= 100 && num <= 9999 => Ok(Validation::Valid),
+            _ => Ok(Validation::Invalid("Flight number must be 3 or 4 digits".into()))
+        }
+    };
+
     let planned_departure_time = Text::new("Planned departure time?")
         .with_placeholder("2026-04-09 14:30")
         .with_validator(datetime_validator)
         .prompt()
-        .expect("Invalid date/time.");
+        .expect("Invalid departure time");
 
     println!("Planned departure time: {}", planned_departure_time);
+
+    let planned_arrival_time = Text::new("Planned arrival time?")
+        .with_placeholder("2025-04-20 18:00")
+        .with_validator(datetime_validator)
+        .prompt()
+        .expect("Invalid arrival time.");
+
+    let flight_number = Text::new("Flight Number?")
+        .with_placeholder("2939")
+        .with_validator(flight_number_validator)
+        .prompt()
+        .expect("Invalid flight number.");
+
+    println!("Assigned ID Number: {}", id);
+    println!("Planned departure time: {}", planned_departure_time);
+    println!("Planned arrival time: {}", planned_arrival_time);
+    println!("Flight number: {}", flight_number);
+
+
+    
 
 
 
