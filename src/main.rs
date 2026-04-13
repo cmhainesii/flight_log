@@ -5,6 +5,7 @@ use std::vec;
 
 
 use chrono::NaiveDateTime;
+use inquire::CustomType;
 use inquire::CustomUserError;
 use inquire::Select;
 use inquire::Text;
@@ -22,12 +23,13 @@ struct LogEntry {
     planned_departure_time: String,
     planned_arrival_time: String,
     flight_number: u16,
-    airline_icao: Airline,
+    airline: Airline,
     cruise_altitude: String,
     departure_airport: String,
     arrival_airport: String,
+    distance_nm: u32,
     route: String,
-    aircraft_icao: Aircraft,
+    aircraft: Aircraft,
     number_passengers: u32,
     zero_fuel_weight: f64,
 }
@@ -209,6 +211,13 @@ fn build_log_entry() -> LogEntry {
         .expect("Invalid arrival airport ICAO.")
         .to_uppercase();
 
+    let distance_nm = CustomType::<u32>::new("Distance? (nm)")
+        .with_placeholder("203")
+        .with_help_message("Enter planned route distance in NM")
+        .with_error_message("Please enter a valid distance in NM")
+        .prompt()
+        .expect("Error parsing distance.");
+
     let route = Text::new("Route?")
         .with_placeholder("KPHL DCT DITCH DCT LUIGI DCT HNNAH DCT JFK ROBUC3 KBOS")
         .with_validator(not_empty_validator)
@@ -229,7 +238,7 @@ fn build_log_entry() -> LogEntry {
         .prompt()
         .expect("Invalid aircraft.");
 
-    let passengers = Text::new("Passengers?")
+    let number_passengers = Text::new("Passengers?")
         .with_placeholder("193")
         .with_validator(above_zero_validator)
         .prompt()
@@ -256,7 +265,7 @@ fn build_log_entry() -> LogEntry {
     println!("  Arrival Airport ICAO: {}", arrival_airport);
     println!("                 Route: {}", route);
     println!("              Aircraft: {} - {}", aircraft.icao(), aircraft);
-    println!("            Passengers: {}", passengers);
+    println!("            Passengers: {}", number_passengers);
     println!("                   ZFW: {}", zero_fuel_weight);
 
     LogEntry {
@@ -264,13 +273,14 @@ fn build_log_entry() -> LogEntry {
         planned_departure_time,
         planned_arrival_time,
         flight_number,
-        airline_icao: airline,
+        airline,
         cruise_altitude,
         departure_airport,
         arrival_airport,
+        distance_nm,
         route,
-        aircraft_icao: aircraft,
-        number_passengers: passengers,
+        aircraft,
+        number_passengers,
         zero_fuel_weight: zero_fuel_weight,
     }
 
@@ -281,6 +291,7 @@ fn build_log_entry() -> LogEntry {
 enum Screen {
     MainMenu,
     BuildLogEntry,
+    ViewLogbook,
     Exit,
 }
 
@@ -289,8 +300,27 @@ impl fmt::Display for Screen {
         match self {
             Screen::MainMenu => write!(f, "Main Menu"),
             Screen::BuildLogEntry => write!(f, "Create New Flight Plan"),
+            Screen::ViewLogbook => write!(f, "View Log Entries"),
             Screen::Exit => write!(f, "Exit"),
         }
+    }
+}
+
+fn view_logbook(logbook: &Vec<LogEntry>) {
+    for entry in logbook {
+        println!("    Assigned ID Number: {}", entry.id);
+        println!("Planned departure time: {}", entry.planned_departure_time);
+        println!("  Planned arrival time: {}", entry.planned_arrival_time);
+        println!("         Flight number: {}{}", entry.aircraft.icao(), entry.flight_number);
+        println!("          Airline: {}", entry.airline);
+        println!("       Cruise Altitude: {} ft", entry.cruise_altitude);
+        println!("Departure Airport ICAO: {}", entry.departure_airport);
+        println!("  Arrival Airport ICAO: {}", entry.arrival_airport);
+        println!("                 Route: {}", entry.route);
+        println!("              Aircraft: {} - {}", entry.aircraft.icao(), entry.aircraft);
+        println!("            Passengers: {}", entry.number_passengers);
+        println!("                   ZFW: {}", entry.zero_fuel_weight);   
+        println!();
     }
 }
 
@@ -326,12 +356,15 @@ fn main_menu() -> Screen {
 
     let options = vec![
         Screen::BuildLogEntry,
+        Screen::ViewLogbook,
         Screen::Exit
     ];
 
-    Select::new("What would you like to do?", options)
+    let selection = Select::new("What would you like to do?", options)
         .prompt()
-        .expect("Failed to read selection")
+        .expect("Failed to read selection");
+    println!();
+    return selection;
 }
 
 fn save_logbook(logbook: &Vec<LogEntry>) {
@@ -357,6 +390,10 @@ fn main() {
                 let new_entry = build_log_entry();
                 logbook.push(new_entry);
                 save_logbook(&logbook);
+                main_menu()
+            },
+            Screen::ViewLogbook => {
+                view_logbook(&logbook);
                 main_menu()
             },
             Screen::Exit => { finished = true; Screen::Exit },
