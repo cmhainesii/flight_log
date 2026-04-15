@@ -324,7 +324,7 @@ fn view_logbook(logbook: &Vec<LogEntry>) {
         println!("    Assigned ID Number: {}", entry.id);
         println!("Planned departure time: {}", entry.planned_departure_time);
         println!("  Planned arrival time: {}", entry.planned_arrival_time);
-        println!("         Flight number: {}{}", entry.aircraft.icao(), entry.flight_number);
+        println!("         Flight number: {}-{}", entry.airline.icao(), entry.flight_number);
         println!("          Airline: {}", entry.airline);
         println!("       Cruise Altitude: {}", format_altitude(entry.cruise_altitude));
         println!("Departure Airport ICAO: {}", entry.departure_airport);

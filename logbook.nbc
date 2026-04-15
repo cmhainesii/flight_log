@@ -1,5 +1,20 @@
 [
   {
+    "id": "558277c5-1b7a-4017-ba4c-a8ea94889ba5",
+    "planned_departure_time": "2026-04-12 22:30",
+    "planned_arrival_time": "2026-04-12 23:50",
+    "flight_number": 2939,
+    "airline": "DAL",
+    "cruise_altitude": 41000,
+    "departure_airport": "KPHL",
+    "arrival_airport": "KBOS",
+    "distance_nm": 338,
+    "route": "KPHL/27L N0471F410 DCT DITCH DCT LUIGI DCT HNNAH DCT JFK ROBUC3 KBOS/22L\n",
+    "aircraft": "B77L",
+    "number_passengers": 229,
+    "zero_fuel_weight": 402009.0
+  },
+  {
     "id": "160b1cc3-fdc4-4685-83cd-52a5f501f783",
     "planned_departure_time": "2026-04-13 18:50",
     "planned_arrival_time": "2026-04-13 19:53",
