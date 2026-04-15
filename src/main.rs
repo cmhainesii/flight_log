@@ -12,6 +12,7 @@ use inquire::Text;
 use inquire::validator::Validation;
 use serde::Deserialize;
 use serde::Serialize;
+use thousands::Separable;
 use uuid::Uuid;
 
 const FILENAME: &str = "logbook.nbc";
@@ -24,7 +25,7 @@ struct LogEntry {
     planned_arrival_time: String,
     flight_number: u16,
     airline: Airline,
-    cruise_altitude: String,
+    cruise_altitude: u32,
     departure_airport: String,
     arrival_airport: String,
     distance_nm: u32,
@@ -33,6 +34,17 @@ struct LogEntry {
     number_passengers: u32,
     zero_fuel_weight: f64,
 }
+
+
+
+fn format_altitude(altitude: u32) -> String {
+    if altitude >= 18_000 {
+        format!("FL{:03}", altitude / 100)
+    } else {
+        format!("{} ft", altitude.separate_with_commas())
+    }
+}
+
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 enum Aircraft {
@@ -125,10 +137,11 @@ fn build_log_entry() -> LogEntry {
         }
     };
 
-    let altitude_validator = |input: &str| -> Result<Validation, CustomUserError> {
-        match input.parse::<u32>() {
-            Ok(num) if num >= 500 && num <= 50_000 => Ok(Validation::Valid),
-            _ => Ok(Validation::Invalid("Altitude must be between 500 and 50,000 feet".into())),
+    let altitude_validator = |input: &u32| -> Result<Validation, CustomUserError> {
+        if *input >= 500 && *input <= 100000 {
+            Ok(Validation::Valid)
+        } else {
+            Ok(Validation::Invalid("Altitude must be between 500 and 100,000 ft.".into()))
         }
     };
 
@@ -191,7 +204,7 @@ fn build_log_entry() -> LogEntry {
         .prompt()
         .expect("Invalid airline.");
 
-    let cruise_altitude = Text::new("Cruise Altitude (feet)?")
+    let cruise_altitude = CustomType::<u32>::new("Cruise Altitude (feet)?")
         .with_placeholder("39000")
         .with_validator(altitude_validator)
         .prompt()
@@ -260,13 +273,13 @@ fn build_log_entry() -> LogEntry {
     println!("         Flight number: {}", flight_number);
     println!("               Airline: {}", airline);
     println!("          Airline ICAO: {}", airline.icao());
-    println!("       Cruise Altitude: {} ft", cruise_altitude);
+    println!("       Cruise Altitude: {}", format_altitude(cruise_altitude));
     println!("Departure Airport ICAO: {}", departure_airport);
     println!("  Arrival Airport ICAO: {}", arrival_airport);
     println!("                 Route: {}", route);
     println!("              Aircraft: {} - {}", aircraft.icao(), aircraft);
     println!("            Passengers: {}", number_passengers);
-    println!("                   ZFW: {}", zero_fuel_weight);
+    println!("                   ZFW: {}", zero_fuel_weight.separate_with_commas());
 
     LogEntry {
         id,
@@ -313,13 +326,13 @@ fn view_logbook(logbook: &Vec<LogEntry>) {
         println!("  Planned arrival time: {}", entry.planned_arrival_time);
         println!("         Flight number: {}{}", entry.aircraft.icao(), entry.flight_number);
         println!("          Airline: {}", entry.airline);
-        println!("       Cruise Altitude: {} ft", entry.cruise_altitude);
+        println!("       Cruise Altitude: {}", format_altitude(entry.cruise_altitude));
         println!("Departure Airport ICAO: {}", entry.departure_airport);
         println!("  Arrival Airport ICAO: {}", entry.arrival_airport);
         println!("                 Route: {}", entry.route);
         println!("              Aircraft: {} - {}", entry.aircraft.icao(), entry.aircraft);
         println!("            Passengers: {}", entry.number_passengers);
-        println!("                   ZFW: {}", entry.zero_fuel_weight);   
+        println!("                   ZFW: {}", entry.zero_fuel_weight.separate_with_commas());   
         println!();
     }
 }
