@@ -305,6 +305,7 @@ enum Screen {
     MainMenu,
     BuildLogEntry,
     ViewLogbook,
+    ViewStatistics,
     Exit,
 }
 
@@ -314,6 +315,7 @@ impl fmt::Display for Screen {
             Screen::MainMenu => write!(f, "Main Menu"),
             Screen::BuildLogEntry => write!(f, "Create New Flight Plan"),
             Screen::ViewLogbook => write!(f, "View Log Entries"),
+            Screen::ViewStatistics => write!(f, "View Statistics"),
             Screen::Exit => write!(f, "Exit"),
         }
     }
@@ -370,6 +372,7 @@ fn main_menu() -> Screen {
     let options = vec![
         Screen::BuildLogEntry,
         Screen::ViewLogbook,
+        Screen::ViewStatistics,
         Screen::Exit
     ];
 
@@ -386,6 +389,15 @@ fn save_logbook(logbook: &Vec<LogEntry>) {
     json.push('\n');
     fs::write(FILENAME, json)
         .expect("Error writing logbook to disk");
+}
+
+
+fn calculate_total_miles(logbook: &[LogEntry]) -> u32 {
+    logbook.iter().map(|entry| entry.distance_nm).sum()
+}
+
+fn get_statistics(logbook: &Vec<LogEntry>) -> String {
+    format!("Total Miles Flown: {} NM", calculate_total_miles(logbook))
 }
 
 fn main() {
@@ -409,6 +421,12 @@ fn main() {
                 view_logbook(&logbook);
                 main_menu()
             },
+            Screen::ViewStatistics => {
+                println!();
+                println!("{}", &get_statistics(&logbook));
+                println!();
+                main_menu()
+            }
             Screen::Exit => { finished = true; Screen::Exit },
         };
 
