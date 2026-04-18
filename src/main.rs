@@ -65,6 +65,26 @@ impl Aircraft {
             Aircraft::B77L => "B77L"
         }
     }
+
+    pub fn mzfw(&self) -> f64 {
+        match self {
+            Aircraft::A20N => 141_757.0,
+            Aircraft::B737 => 121_700.0,
+            Aircraft::B738 => 138_300.0,
+            Aircraft::B77F => 547_000.0,
+            Aircraft::B77L => 461_000.0,
+        }
+    }
+
+    pub fn mpsx(&self) -> u32 {
+        match self {
+            Aircraft::A20N => 174,
+            Aircraft::B737 => 124,
+            Aircraft::B738 => 163,
+            Aircraft::B77F => 4,
+            Aircraft::B77L => 297,
+        }
+    }
 }
 
 impl fmt::Display for Aircraft {
@@ -323,6 +343,9 @@ impl fmt::Display for Screen {
 
 fn view_logbook(logbook: &Vec<LogEntry>) {
     for entry in logbook {
+        let load_percent = entry.zero_fuel_weight / entry.aircraft.mzfw() * 100.0;
+        let passenger_percent = entry.number_passengers as f64 / entry.aircraft.mpsx() as f64 * 100.0;
+
         println!("    Assigned ID Number: {}", entry.id);
         println!("Planned departure time: {}", entry.planned_departure_time);
         println!("  Planned arrival time: {}", entry.planned_arrival_time);
@@ -334,7 +357,9 @@ fn view_logbook(logbook: &Vec<LogEntry>) {
         println!("                 Route: {}", entry.route);
         println!("              Aircraft: {} - {}", entry.aircraft.icao(), entry.aircraft);
         println!("            Passengers: {}", entry.number_passengers);
-        println!("                   ZFW: {}", entry.zero_fuel_weight.separate_with_commas());   
+        println!("                   ZFW: {}", entry.zero_fuel_weight.separate_with_commas());
+        println!("                  Load: {:.2}%", load_percent);
+        println!("    Passenger Capacity: {:.2}%", passenger_percent);
         println!();
     }
 }
