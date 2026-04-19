@@ -1,5 +1,4 @@
 use core::fmt;
-use std::collections::HashMap;
 use std::fs;
 use std::io::ErrorKind;
 use std::vec;
@@ -34,20 +33,6 @@ struct LogEntry {
     aircraft: Aircraft,
     number_passengers: u32,
     zero_fuel_weight: f64,
-}
-
-struct FleetData {
-    // Key: ICAO String, Value Max Passengers
-    aircraft_specs: HashMap<String, u16>,
-}
-
-impl FleetData {
-    fn new() -> Self {
-        let mut specs = HashMap::new();
-        specs.insert("A20N", 174);
-        specs.insert("B77L", 297);
-        specs.insert("B77F", 4);
-    }
 }
 
 
