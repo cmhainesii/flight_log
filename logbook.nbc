@@ -142,5 +142,37 @@
     "number_passengers": 109,
     "zero_fuel_weight": 118657.0,
     "remarks": "Arrival aborted at 500ft AGL due to single event upset (SEU) resulting from G2 Geomagnetic Storm (Kp 6-). Verified solar wind collision at 700 km/s."
+  },
+  {
+    "id": "69a421e1-568e-48c1-b39f-8ced3da3b15e",
+    "planned_departure_time": "2026-04-19 18:35",
+    "planned_arrival_time": "2026-04-19 20:12",
+    "flight_number": 8797,
+    "airline": "JBU",
+    "cruise_altitude": 36000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 342,
+    "route": "KBOS/33L N0442F360 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/27R\n",
+    "aircraft": "A20N",
+    "number_passengers": 158,
+    "zero_fuel_weight": 129878.0,
+    "remarks": "Smooth crosswind landing 27R"
+  },
+  {
+    "id": "dd9f282e-417e-4a42-b2f8-9a79713475a5",
+    "planned_departure_time": "2026-04-19 22:40",
+    "planned_arrival_time": "2026-04-19 23:54",
+    "flight_number": 1997,
+    "airline": "JBU",
+    "cruise_altitude": 31000,
+    "departure_airport": "KPHL",
+    "arrival_airport": "KBOS",
+    "distance_nm": 318,
+    "route": "KPHL/27L N0402F310 DCT DITCH DCT LUIGI DCT HNNAH DCT JFK ROBUC3 KBOS/27\n",
+    "aircraft": "A20N",
+    "number_passengers": 174,
+    "zero_fuel_weight": 133542.0,
+    "remarks": ""
   }
 ]

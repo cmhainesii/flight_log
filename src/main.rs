@@ -2,6 +2,7 @@ use core::fmt;
 use std::fs;
 use std::io::ErrorKind;
 use std::vec;
+use std::fmt::Write;
 
 
 use chrono::NaiveDateTime;
@@ -36,6 +37,15 @@ struct LogEntry {
     remarks: String,
 }
 
+impl LogEntry {
+    fn get_load_percent(&self) -> f64 {
+        self.zero_fuel_weight / self.aircraft.mzfw() * 100.0
+    }
+
+    fn get_psx_percent(&self) -> f64 {
+        self.number_passengers as f64 / self.aircraft.mpsx() as f64 * 100.0
+    }
+}
 
 
 
@@ -295,27 +305,10 @@ fn build_log_entry() -> LogEntry {
         .prompt()
         .expect("Error parsing pilot remarks.");
 
-    let pax_percent = number_passengers as f64 / aircraft.mpsx() as f64 * 100.0;
-    let load_percent = zero_fuel_weight / aircraft.mzfw() * 100.0;
+    
+    
 
-    println!("    Assigned ID Number: {}", id);
-    println!("Planned departure time: {}", planned_departure_time);
-    println!("  Planned arrival time: {}", planned_arrival_time);
-    println!("         Flight number: {}-{}", airline.icao(), flight_number);
-    println!("          Airline: {}", airline);
-    println!("       Cruise Altitude: {}", format_altitude(cruise_altitude));
-    println!("Departure Airport ICAO: {}", departure_airport);
-    println!("  Arrival Airport ICAO: {}", arrival_airport);
-    println!("                 Route: {}", route);
-    println!("              Aircraft: {} - {}", aircraft.icao(), aircraft);
-    println!("            Passengers: {}", number_passengers);
-    println!("                   ZFW: {}", zero_fuel_weight.separate_with_commas());
-    println!("                  Load: {:.2}%", load_percent);
-    println!("    Passenger Capacity: {:.2}%", pax_percent);
-    println!("         Pilot Remarks: {}", remarks);
-
-
-    LogEntry {
+    let new_entry = LogEntry {
         id,
         planned_departure_time,
         planned_arrival_time,
@@ -330,8 +323,29 @@ fn build_log_entry() -> LogEntry {
         number_passengers,
         zero_fuel_weight,
         remarks
+    };
 
-    }
+
+    println!("    Assigned ID Number: {}", new_entry.id);
+    println!("Planned departure time: {}", new_entry.planned_departure_time);
+    println!("  Planned arrival time: {}", new_entry.planned_arrival_time);
+    println!("         Flight number: {}-{}", new_entry.airline.icao(), new_entry.flight_number);
+    println!("               Airline: {}", new_entry.airline);
+    println!("       Cruise Altitude: {}", format_altitude(new_entry.cruise_altitude));
+    println!("Departure Airport ICAO: {}", new_entry.departure_airport);
+    println!("  Arrival Airport ICAO: {}", new_entry.arrival_airport);
+    println!("                 Route: {}", new_entry.route);
+    println!("              Aircraft: {} - {}", new_entry.aircraft.icao(), new_entry.aircraft);
+    println!("            Passengers: {}", new_entry.number_passengers);
+    println!("                   ZFW: {}", new_entry.zero_fuel_weight.separate_with_commas());
+    println!("                  Load: {:.2}%", new_entry.get_load_percent());
+    println!("    Passenger Capacity: {:.2}%", new_entry.get_psx_percent());
+    println!("         Pilot Remarks: {}", new_entry.remarks);
+    println!();
+
+    return new_entry;
+
+    
 
 }
 
@@ -440,8 +454,29 @@ fn calculate_total_miles(logbook: &[LogEntry]) -> u32 {
 }
 
 fn get_statistics(logbook: &Vec<LogEntry>) -> String {
-    format!("Total Miles Flown: {} NM", calculate_total_miles(logbook))
+    let mut output = String::new();
+    let _ = writeln!(output, "        Total Miles Flown: {} NM", calculate_total_miles(logbook));
+    let _ = writeln!(output, "     Average Load Percent: {:.02} %", calculate_average_load_percent(logbook));
+    let _ = writeln!(output, "Average Passenger Percent: {:.02} %", calculate_average_psx_percent(logbook));
+    output
 }
+
+fn calculate_average_load_percent(logbook: &Vec<LogEntry>) -> f64 {
+    let mut sum = 0;
+    for entry in logbook {
+        sum += entry.get_load_percent() as i32;
+    }
+    return sum as f64 / logbook.len() as f64
+}
+
+fn calculate_average_psx_percent(logbook: &Vec<LogEntry>) -> f64 {
+    let mut sum = 0;
+    for entry in logbook {
+        sum += entry.get_psx_percent() as i32;
+    }
+    return sum as f64 / logbook.len() as f64;
+}
+
 
 fn main() {
 
