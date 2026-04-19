@@ -33,6 +33,7 @@ struct LogEntry {
     aircraft: Aircraft,
     number_passengers: u32,
     zero_fuel_weight: f64,
+    remarks: String,
 }
 
 
@@ -189,7 +190,7 @@ fn build_log_entry() -> LogEntry {
     };
 
     let planned_departure_time = Text::new("Planned departure time?")
-        .with_placeholder("2026-04-09 14:30")
+        .with_placeholder("2026-04-20 14:30")
         .with_validator(datetime_validator)
         .prompt()
         .expect("Invalid departure time");
@@ -197,7 +198,7 @@ fn build_log_entry() -> LogEntry {
     println!("Planned departure time: {}", planned_departure_time);
 
     let planned_arrival_time = Text::new("Planned arrival time?")
-        .with_placeholder("2025-04-20 18:00")
+        .with_placeholder("2026-04-20 18:00")
         .with_validator(datetime_validator)
         .prompt()
         .expect("Invalid arrival time.");
@@ -288,12 +289,20 @@ fn build_log_entry() -> LogEntry {
         .parse::<f64>()
         .expect("Failed to parse input as a number.");
 
+    let remarks = Text::new("Remarks?")
+        .with_placeholder("Delayed due to ground delay at KBOS.")
+        .with_help_message("Enter any additional notes or comments about the flight")
+        .prompt()
+        .expect("Error parsing pilot remarks.");
+
+    let pax_percent = number_passengers as f64 / aircraft.mpsx() as f64 * 100.0;
+    let load_percent = zero_fuel_weight / aircraft.mzfw() * 100.0;
+
     println!("    Assigned ID Number: {}", id);
     println!("Planned departure time: {}", planned_departure_time);
     println!("  Planned arrival time: {}", planned_arrival_time);
-    println!("         Flight number: {}", flight_number);
-    println!("               Airline: {}", airline);
-    println!("          Airline ICAO: {}", airline.icao());
+    println!("         Flight number: {}-{}", airline.icao(), flight_number);
+    println!("          Airline: {}", airline);
     println!("       Cruise Altitude: {}", format_altitude(cruise_altitude));
     println!("Departure Airport ICAO: {}", departure_airport);
     println!("  Arrival Airport ICAO: {}", arrival_airport);
@@ -301,6 +310,10 @@ fn build_log_entry() -> LogEntry {
     println!("              Aircraft: {} - {}", aircraft.icao(), aircraft);
     println!("            Passengers: {}", number_passengers);
     println!("                   ZFW: {}", zero_fuel_weight.separate_with_commas());
+    println!("                  Load: {:.2}%", load_percent);
+    println!("    Passenger Capacity: {:.2}%", pax_percent);
+    println!("         Pilot Remarks: {}", remarks);
+
 
     LogEntry {
         id,
@@ -315,7 +328,9 @@ fn build_log_entry() -> LogEntry {
         route,
         aircraft,
         number_passengers,
-        zero_fuel_weight: zero_fuel_weight,
+        zero_fuel_weight,
+        remarks
+
     }
 
 }
@@ -343,10 +358,11 @@ impl fmt::Display for Screen {
 }
 
 fn view_logbook(logbook: &Vec<LogEntry>) {
-    for entry in logbook {
+    for (index, entry) in logbook.iter().enumerate() {
         let load_percent = entry.zero_fuel_weight / entry.aircraft.mzfw() * 100.0;
         let passenger_percent = entry.number_passengers as f64 / entry.aircraft.mpsx() as f64 * 100.0;
 
+        println!("      Log Entry Number: {}", index + 1);
         println!("    Assigned ID Number: {}", entry.id);
         println!("Planned departure time: {}", entry.planned_departure_time);
         println!("  Planned arrival time: {}", entry.planned_arrival_time);
@@ -361,6 +377,7 @@ fn view_logbook(logbook: &Vec<LogEntry>) {
         println!("                   ZFW: {}", entry.zero_fuel_weight.separate_with_commas());
         println!("                  Load: {:.2}%", load_percent);
         println!("    Passenger Capacity: {:.2}%", passenger_percent);
+        println!("         Pilot Remarks: {}", entry.remarks);
         println!();
     }
 }
