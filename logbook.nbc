@@ -190,5 +190,21 @@
     "number_passengers": 145,
     "zero_fuel_weight": 126901.0,
     "remarks": "Beautiful landing"
+  },
+  {
+    "id": "b4065210-f18e-4fcf-a99e-f404012ac92d",
+    "planned_departure_time": "2026-04-20 04:10",
+    "planned_arrival_time": "2026-04-20 05:24",
+    "flight_number": 9787,
+    "airline": "JBU",
+    "cruise_altitude": 33000,
+    "departure_airport": "KPHL",
+    "arrival_airport": "KBOS",
+    "distance_nm": 318,
+    "route": "KPHL/27L N0399F330 DCT DITCH DCT LUIGI DCT HNNAH DCT JFK ROBUC3 KBOS/27\n",
+    "aircraft": "A20N",
+    "number_passengers": 111,
+    "zero_fuel_weight": 119115.0,
+    "remarks": "Problem with autopilot during landing. Salvaged landing."
   }
 ]
