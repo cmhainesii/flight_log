@@ -37,6 +37,103 @@ struct LogEntry {
     remarks: String,
 }
 
+struct LogBook {
+    logs: Vec<LogEntry>
+
+}
+
+impl LogBook {
+    fn add(&mut self, entry: LogEntry) {
+        self.logs.push(entry);
+    }
+
+    fn save(&self) {
+        let mut json = serde_json::to_string_pretty(&self.logs)
+            .expect("Error saving logbook to disk.");
+        json.push('\n');
+        fs::write(FILENAME, json)
+            .expect("Error writing logbook to disk");
+    }
+
+
+    fn calculate_total_miles(&self) -> u32 {
+        self.logs.iter().map(|entry| entry.distance_nm).sum()
+    }
+
+    fn load_existing_log_entries(file_path: &str) -> LogBook {
+        match fs::read_to_string(file_path) {
+            Ok(json_contents) => {
+                match serde_json::from_str::<Vec<LogEntry>>(&json_contents) {
+                    Ok(logbook) => {
+                        println!("Successfully loaded {} entries from the logbook.", logbook.len());
+                        LogBook { logs: logbook }
+                    }
+                    Err(e) => {
+                        eprintln!("Error parsing the logbook JSON: {}", e);
+                        LogBook { logs: Vec::new() }
+                    }
+                }
+            }
+            Err(e) => {
+                // Check specifically if the error is because the file doesn't exist
+                if e.kind() == ErrorKind::NotFound {
+                    println!("No existing logbook found. A new logbook has been created.");
+                    LogBook { logs: Vec::new() }
+                } else {
+                    eprintln!("An error occurred when attempting to read the logbook: {}", e);
+                    LogBook { logs: Vec::new() }
+                }
+            }
+        }
+    }
+
+    fn get_statistics(&self) -> String {
+        let mut output = String::new();
+        let _ = writeln!(output, "        Total Miles Flown: {} NM", self.calculate_total_miles());
+        let _ = writeln!(output, "     Average Load Percent: {:.02} %", self.calculate_average_load_percent());
+        let _ = writeln!(output, "Average Passenger Percent: {:.02} %", self.calculate_average_psx_percent());
+        output
+    }
+
+    fn calculate_average_load_percent(&self) -> f64 {
+        let mut sum = 0;
+        for entry in &self.logs {
+            sum += entry.get_load_percent() as i32;
+        }
+        return sum as f64 / self.logs.len() as f64
+    }
+
+    fn calculate_average_psx_percent(&self) -> f64 {
+        let mut sum = 0;
+        for entry in &self.logs {
+            sum += entry.get_psx_percent() as i32;
+        }
+        return sum as f64 / self.logs.len() as f64;
+    }
+
+    fn print_logbook(&self) {
+        for (index, entry) in self.logs.iter().enumerate() {
+            println!("      Log Entry Number: {}", index + 1);
+            println!("    Assigned ID Number: {}", entry.id);
+            println!("Planned departure time: {}", entry.planned_departure_time);
+            println!("  Planned arrival time: {}", entry.planned_arrival_time);
+            println!("         Flight number: {}-{}", entry.airline.icao(), entry.flight_number);
+            println!("          Airline: {}", entry.airline);
+            println!("       Cruise Altitude: {}", format_altitude(entry.cruise_altitude));
+            println!("Departure Airport ICAO: {}", entry.departure_airport);
+            println!("  Arrival Airport ICAO: {}", entry.arrival_airport);
+            println!("                 Route: {}", entry.route);
+            println!("              Aircraft: {} - {}", entry.aircraft.icao(), entry.aircraft);
+            println!("            Passengers: {}", entry.number_passengers);
+            println!("                   ZFW: {}", entry.zero_fuel_weight.separate_with_commas());
+            println!("                  Load: {:.2}%", entry.get_load_percent());
+            println!("    Passenger Capacity: {:.2}%", entry.get_psx_percent());
+            println!("         Pilot Remarks: {}", entry.remarks);
+            println!();
+        }
+    }
+}
+
 impl LogEntry {
     fn get_load_percent(&self) -> f64 {
         self.zero_fuel_weight / self.aircraft.mzfw() * 100.0
@@ -371,57 +468,9 @@ impl fmt::Display for Screen {
     }
 }
 
-fn view_logbook(logbook: &Vec<LogEntry>) {
-    for (index, entry) in logbook.iter().enumerate() {
-        let load_percent = entry.zero_fuel_weight / entry.aircraft.mzfw() * 100.0;
-        let passenger_percent = entry.number_passengers as f64 / entry.aircraft.mpsx() as f64 * 100.0;
 
-        println!("      Log Entry Number: {}", index + 1);
-        println!("    Assigned ID Number: {}", entry.id);
-        println!("Planned departure time: {}", entry.planned_departure_time);
-        println!("  Planned arrival time: {}", entry.planned_arrival_time);
-        println!("         Flight number: {}-{}", entry.airline.icao(), entry.flight_number);
-        println!("          Airline: {}", entry.airline);
-        println!("       Cruise Altitude: {}", format_altitude(entry.cruise_altitude));
-        println!("Departure Airport ICAO: {}", entry.departure_airport);
-        println!("  Arrival Airport ICAO: {}", entry.arrival_airport);
-        println!("                 Route: {}", entry.route);
-        println!("              Aircraft: {} - {}", entry.aircraft.icao(), entry.aircraft);
-        println!("            Passengers: {}", entry.number_passengers);
-        println!("                   ZFW: {}", entry.zero_fuel_weight.separate_with_commas());
-        println!("                  Load: {:.2}%", load_percent);
-        println!("    Passenger Capacity: {:.2}%", passenger_percent);
-        println!("         Pilot Remarks: {}", entry.remarks);
-        println!();
-    }
-}
 
-fn load_existing_log_entries(file_path: &str) -> Vec<LogEntry> {
-    match fs::read_to_string(file_path) {
-        Ok(json_contents) => {
-            match serde_json::from_str::<Vec<LogEntry>>(&json_contents) {
-                Ok(logbook) => {
-                    println!("Successfully loaded {} entries from the logbook.", logbook.len());
-                    logbook
-                }
-                Err(e) => {
-                    eprintln!("Error parsing the logbook JSON: {}", e);
-                    Vec::new()
-                }
-            }
-        }
-        Err(e) => {
-            // Check specifically if the error is because the file doesn't exist
-            if e.kind() == ErrorKind::NotFound {
-                println!("No existing logbook found. A new logbook has been created.");
-                Vec::new()
-            } else {
-                eprintln!("An error occurred when attempting to read the logbook: {}", e);
-                Vec::new()
-            }
-        }
-    }
-}
+
 
 
 fn main_menu() -> Screen {
@@ -440,48 +489,15 @@ fn main_menu() -> Screen {
     return selection;
 }
 
-fn save_logbook(logbook: &Vec<LogEntry>) {
-    let mut json = serde_json::to_string_pretty(logbook)
-        .expect("Error saving logbook to disk.");
-    json.push('\n');
-    fs::write(FILENAME, json)
-        .expect("Error writing logbook to disk");
-}
 
 
-fn calculate_total_miles(logbook: &[LogEntry]) -> u32 {
-    logbook.iter().map(|entry| entry.distance_nm).sum()
-}
 
-fn get_statistics(logbook: &Vec<LogEntry>) -> String {
-    let mut output = String::new();
-    let _ = writeln!(output, "        Total Miles Flown: {} NM", calculate_total_miles(logbook));
-    let _ = writeln!(output, "     Average Load Percent: {:.02} %", calculate_average_load_percent(logbook));
-    let _ = writeln!(output, "Average Passenger Percent: {:.02} %", calculate_average_psx_percent(logbook));
-    output
-}
-
-fn calculate_average_load_percent(logbook: &Vec<LogEntry>) -> f64 {
-    let mut sum = 0;
-    for entry in logbook {
-        sum += entry.get_load_percent() as i32;
-    }
-    return sum as f64 / logbook.len() as f64
-}
-
-fn calculate_average_psx_percent(logbook: &Vec<LogEntry>) -> f64 {
-    let mut sum = 0;
-    for entry in logbook {
-        sum += entry.get_psx_percent() as i32;
-    }
-    return sum as f64 / logbook.len() as f64;
-}
 
 
 fn main() {
 
     // Load flights from json if they exist, or else create a new blank logbook.
-    let mut logbook = load_existing_log_entries(FILENAME);
+    let mut logbook = LogBook::load_existing_log_entries(FILENAME);
 
     let mut finished = false;
     let mut current_screen = Screen::MainMenu;
@@ -491,17 +507,17 @@ fn main() {
             Screen::MainMenu => main_menu(),
             Screen::BuildLogEntry => {
                 let new_entry = build_log_entry();
-                logbook.push(new_entry);
-                save_logbook(&logbook);
+                logbook.add(new_entry);
+                logbook.save();
                 main_menu()
             },
             Screen::ViewLogbook => {
-                view_logbook(&logbook);
+                logbook.print_logbook();
                 main_menu()
             },
             Screen::ViewStatistics => {
                 println!();
-                println!("{}", &get_statistics(&logbook));
+                println!("{}", logbook.get_statistics());
                 println!();
                 main_menu()
             }

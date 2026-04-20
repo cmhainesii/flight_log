@@ -174,21 +174,5 @@
     "number_passengers": 174,
     "zero_fuel_weight": 133542.0,
     "remarks": ""
-  },
-  {
-    "id": "abe6b314-adac-4f9d-895d-3824f1d2805c",
-    "planned_departure_time": "2026-04-20 01:55",
-    "planned_arrival_time": "2026-04-20 03:35",
-    "flight_number": 1420,
-    "airline": "JBU",
-    "cruise_altitude": 38000,
-    "departure_airport": "KBOS",
-    "arrival_airport": "KPHL",
-    "distance_nm": 342,
-    "route": "KBOS/33L N0450F380 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/27R\n",
-    "aircraft": "A20N",
-    "number_passengers": 145,
-    "zero_fuel_weight": 126901.0,
-    "remarks": "Beautiful landing"
   }
 ]
