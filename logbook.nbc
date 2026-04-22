@@ -206,5 +206,37 @@
     "number_passengers": 111,
     "zero_fuel_weight": 119115.0,
     "remarks": "Problem with autopilot during landing. Salvaged landing."
+  },
+  {
+    "id": "2b774d2a-1899-491c-8093-f94bb7ef1c6c",
+    "planned_departure_time": "2026-04-20 23:05",
+    "planned_arrival_time": "2026-04-21 00:27",
+    "flight_number": 4210,
+    "airline": "JBU",
+    "cruise_altitude": 23000,
+    "departure_airport": "KPHL",
+    "arrival_airport": "KBOS",
+    "distance_nm": 285,
+    "route": "KPHL/27L N0340F230 DCT DITCH DCT LUIGI DCT HNNAH DCT JFK ROBUC3 KBOS/04R",
+    "aircraft": "A20N",
+    "number_passengers": 117,
+    "zero_fuel_weight": 120489.0,
+    "remarks": ""
+  },
+  {
+    "id": "8014545a-f2e2-48e3-8929-f1264356e592",
+    "planned_departure_time": "2026-04-22 20:55",
+    "planned_arrival_time": "2026-04-22 22:17",
+    "flight_number": 1997,
+    "airline": "DAL",
+    "cruise_altitude": 23000,
+    "departure_airport": "KACY",
+    "arrival_airport": "KBOS",
+    "distance_nm": 305,
+    "route": "KACY/13 N0407F230 DCT BRIGS Q439 RIFLE DCT ROBUC ROBUC3 KBOS/22L",
+    "aircraft": "B737",
+    "number_passengers": 111,
+    "zero_fuel_weight": 111515.0,
+    "remarks": "First flight in 737 in a while. Went smoothly. Autoland worked as expected. Had to remember to NOT taxi to the jetblue terminal!"
   }
 ]
