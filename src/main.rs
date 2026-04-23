@@ -14,40 +14,14 @@ use uuid::Uuid;
 
 
 mod log_book;
+mod log_entry;
+mod airline;
+
 use log_book::LogBook;
+use log_entry::LogEntry;
+use airline::Airline;
 
 const FILENAME: &str = "logbook.nbc";
-
-
-#[derive(Serialize, Deserialize, Debug)]
-struct LogEntry {
-    id: Uuid,
-    planned_departure_time: String,
-    planned_arrival_time: String,
-    flight_number: u16,
-    airline: Airline,
-    cruise_altitude: u32,
-    departure_airport: String,
-    arrival_airport: String,
-    distance_nm: u32,
-    route: String,
-    aircraft: Aircraft,
-    number_passengers: u32,
-    zero_fuel_weight: f64,
-    remarks: String,
-}
-
-
-
-impl LogEntry {
-    fn get_load_percent(&self) -> f64 {
-        self.zero_fuel_weight / self.aircraft.mzfw() * 100.0
-    }
-
-    fn get_psx_percent(&self) -> f64 {
-        self.number_passengers as f64 / self.aircraft.mpsx() as f64 * 100.0
-    }
-}
 
 
 
@@ -114,42 +88,7 @@ impl fmt::Display for Aircraft {
 }
 
 
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-enum Airline {
-    DAL,
-    AAL,
-    UAL,
-    JBU,
-    FDX,
-    SWA,
-}
 
-
-impl Airline {
-    pub fn icao(&self) -> &'static str {
-        match self {
-            Airline::DAL => "DAL",
-            Airline::AAL => "AAL",
-            Airline::UAL => "UAL",
-            Airline::JBU => "JBU",
-            Airline::FDX => "FDX",
-            Airline::SWA => "SWA",
-        }
-    }
-}
-
-impl fmt::Display for Airline {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Airline::DAL => write!(f, "Delta Airlines"),
-            Airline::AAL => write!(f, "American Airlines"),
-            Airline::FDX => write!(f, "FedEx"),
-            Airline::JBU => write!(f, "Jetblue"),
-            Airline::SWA => write!(f, "Southwest Airlines"),
-            Airline::UAL => write!(f, "United Airlines"),
-        }
-    }
-}
 
 fn build_log_entry() -> LogEntry {
 
@@ -329,7 +268,7 @@ fn build_log_entry() -> LogEntry {
 
 
     println!("    Assigned ID Number: {}", new_entry.id);
-    println!("                Flight: {} --> {}", new_entry.departure_airport, new_entry.arrival_airport);
+    println!("                Flight: {} -> {}", new_entry.departure_airport, new_entry.arrival_airport);
     println!("Planned departure time: {}", new_entry.planned_departure_time);
     println!("  Planned arrival time: {}", new_entry.planned_arrival_time);
     println!("         Flight number: {}-{}", new_entry.airline.icao(), new_entry.flight_number);

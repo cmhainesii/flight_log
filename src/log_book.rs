@@ -2,8 +2,7 @@ use std::{fs, io::ErrorKind};
 use std::fmt::Write;
 
 use thousands::Separable;
-
-use crate::LogEntry;
+use crate::log_entry::LogEntry;
 pub struct LogBook {
     logs: Vec<LogEntry>
 
@@ -82,7 +81,7 @@ impl LogBook {
         for (index, entry) in self.logs.iter().enumerate() {
             println!("      Log Entry Number: {}", index + 1);
             println!("    Assigned ID Number: {}", entry.id);
-            println!("                Flight: {} --> {}", entry.departure_airport, entry.arrival_airport);
+            println!("                Flight: {} -> {}", entry.departure_airport, entry.arrival_airport);
             println!("Planned departure time: {}", entry.planned_departure_time);
             println!("  Planned arrival time: {}", entry.planned_arrival_time);
             println!("         Flight number: {}-{}", entry.airline.icao(), entry.flight_number);
