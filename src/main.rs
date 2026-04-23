@@ -67,7 +67,7 @@ impl Aircraft {
     pub fn mpsx(&self) -> u32 {
         match self {
             Aircraft::A20N => 174,
-            Aircraft::B737 => 124,
+            Aircraft::B737 => 128,
             Aircraft::B738 => 163,
             Aircraft::B77F => 4,
             Aircraft::B77L => 297,

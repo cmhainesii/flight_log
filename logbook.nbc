@@ -238,5 +238,21 @@
     "number_passengers": 111,
     "zero_fuel_weight": 111515.0,
     "remarks": "First flight in 737 in a while. Went smoothly. Autoland worked as expected. Had to remember to NOT taxi to the jetblue terminal!"
+  },
+  {
+    "id": "3e605bdb-67f8-47eb-be92-a4c88a69b350",
+    "planned_departure_time": "2026-04-23 01:35",
+    "planned_arrival_time": "2026-04-23 03:08",
+    "flight_number": 2939,
+    "airline": "DAL",
+    "cruise_altitude": 28000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 371,
+    "route": "KBOS/22R N0414F230 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/09R",
+    "aircraft": "B737",
+    "number_passengers": 128,
+    "zero_fuel_weight": 121700.0,
+    "remarks": "Skipped parking at gate was tired"
   }
 ]
