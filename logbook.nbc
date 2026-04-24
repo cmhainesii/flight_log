@@ -254,5 +254,21 @@
     "number_passengers": 128,
     "zero_fuel_weight": 121700.0,
     "remarks": "Skipped parking at gate was tired"
+  },
+  {
+    "id": "6afa0f6b-05e3-46b5-9ae4-008f8c568bad",
+    "planned_departure_time": "2026-04-26 01:10",
+    "planned_arrival_time": "2026-04-26 02:36",
+    "flight_number": 3986,
+    "airline": "DAL",
+    "cruise_altitude": 32000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 341,
+    "route": "KBOS/09 N0444F320 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/27R\n",
+    "aircraft": "B737",
+    "number_passengers": 92,
+    "zero_fuel_weight": 107415.0,
+    "remarks": "Smooth landing on 27R at KPHL xD"
   }
 ]
