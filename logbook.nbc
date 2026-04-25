@@ -270,5 +270,37 @@
     "number_passengers": 92,
     "zero_fuel_weight": 107415.0,
     "remarks": "Smooth landing on 27R at KPHL xD"
+  },
+  {
+    "id": "c710a96f-1d70-4bf7-8fdf-120de921fc02",
+    "planned_departure_time": "2026-04-26 02:15",
+    "planned_arrival_time": "2026-04-26 03:46",
+    "flight_number": 2939,
+    "airline": "DAL",
+    "cruise_altitude": 38000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 343,
+    "route": "KBOS/09 N0451F380 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/09R",
+    "aircraft": "B737",
+    "number_passengers": 113,
+    "zero_fuel_weight": 112560.0,
+    "remarks": "Missed approach, very smooth manual landing on the second approach to 09R!"
+  },
+  {
+    "id": "b6d27584-aa07-4f43-b4b4-08c37a393e6c",
+    "planned_departure_time": "2026-04-25 16:25",
+    "planned_arrival_time": "2026-04-25 18:10",
+    "flight_number": 3412,
+    "airline": "DAL",
+    "cruise_altitude": 36000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KIAD",
+    "distance_nm": 444,
+    "route": "KBOS/09 N0449F360 BLZZR6 BLZZR DCT BAF HYPER9 KIAD/01R",
+    "aircraft": "B737",
+    "number_passengers": 109,
+    "zero_fuel_weight": 111580.0,
+    "remarks": ""
   }
 ]
