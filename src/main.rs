@@ -7,8 +7,6 @@ use inquire::CustomUserError;
 use inquire::Select;
 use inquire::Text;
 use inquire::validator::Validation;
-use serde::Deserialize;
-use serde::Serialize;
 use thousands::Separable;
 use uuid::Uuid;
 
@@ -16,14 +14,14 @@ use uuid::Uuid;
 mod log_book;
 mod log_entry;
 mod airline;
+mod aircraft;
 
 use log_book::LogBook;
 use log_entry::LogEntry;
 use airline::Airline;
+use aircraft::Aircraft;
 
 const FILENAME: &str = "logbook.nbc";
-
-
 
 fn format_altitude(altitude: u32) -> String {
     if altitude >= 18_000 {
@@ -32,63 +30,6 @@ fn format_altitude(altitude: u32) -> String {
         format!("{} ft", altitude.separate_with_commas())
     }
 }
-
-
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-enum Aircraft {
-    B737,
-    B77L,
-    B77F,
-    A20N,
-    B738
-}
-
-impl Aircraft {
-    pub fn icao(&self) -> &'static str {
-        match self {
-            Aircraft::A20N => "A20N",
-            Aircraft::B737 => "B737",
-            Aircraft::B738 => "B738",
-            Aircraft::B77F => "B77F",
-            Aircraft::B77L => "B77L"
-        }
-    }
-
-    pub fn mzfw(&self) -> f64 {
-        match self {
-            Aircraft::A20N => 141_757.0,
-            Aircraft::B737 => 121_700.0,
-            Aircraft::B738 => 138_300.0,
-            Aircraft::B77F => 547_000.0,
-            Aircraft::B77L => 461_000.0,
-        }
-    }
-
-    pub fn mpsx(&self) -> u32 {
-        match self {
-            Aircraft::A20N => 174,
-            Aircraft::B737 => 132,
-            Aircraft::B738 => 163,
-            Aircraft::B77F => 4,
-            Aircraft::B77L => 297,
-        }
-    }
-}
-
-impl fmt::Display for Aircraft {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Aircraft::A20N => write!(f, "Airbus A320"),
-            Aircraft::B737 => write!(f, "Boeing 737-700"),
-            Aircraft::B738 => write!(f, "Boeing 737-800"),
-            Aircraft::B77F => write!(f, "Boeing 777-F"),
-            Aircraft::B77L => write!(f, "Boeing 777-200LR"),
-        }
-    }
-}
-
-
-
 
 fn build_log_entry() -> LogEntry {
 
