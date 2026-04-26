@@ -318,5 +318,53 @@
     "number_passengers": 82,
     "zero_fuel_weight": 104965.0,
     "remarks": "Smooth flight. Buttered the bread."
+  },
+  {
+    "id": "05940beb-21f6-4b69-94d8-fd2b7e22e6fe",
+    "planned_departure_time": "2026-04-26 04:35",
+    "planned_arrival_time": "2026-04-26 06:07",
+    "flight_number": 2233,
+    "airline": "DAL",
+    "cruise_altitude": 38000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 357,
+    "route": "KBOS/15R N0453F380 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/09R",
+    "aircraft": "B737",
+    "number_passengers": 114,
+    "zero_fuel_weight": 112805.0,
+    "remarks": ""
+  },
+  {
+    "id": "76095332-e57d-41a3-ae02-adaa59b0e1cc",
+    "planned_departure_time": "2026-04-26 18:35",
+    "planned_arrival_time": "2026-04-26 20:07",
+    "flight_number": 1997,
+    "airline": "DAL",
+    "cruise_altitude": 39000,
+    "departure_airport": "KIAD",
+    "arrival_airport": "KBOS",
+    "distance_nm": 400,
+    "route": "KIAD/30 N0440F390 JCOBY4 SWANN DCT BROSS Q419 JFK ROBUC3 KBOS/04R",
+    "aircraft": "B737",
+    "number_passengers": 124,
+    "zero_fuel_weight": 115255.0,
+    "remarks": ""
+  },
+  {
+    "id": "07ae2a0c-73e4-4ab2-bbf3-a59c48ec8e59",
+    "planned_departure_time": "2026-04-26 21:20",
+    "planned_arrival_time": "2026-04-26 22:36",
+    "flight_number": 9787,
+    "airline": "DAL",
+    "cruise_altitude": 22000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KJFK",
+    "distance_nm": 230,
+    "route": "KBOS/09 N0409F220 SSOXS7 SSOXS DCT BUZRD DCT SEY PARCH4 KJFK/04R",
+    "aircraft": "B737",
+    "number_passengers": 124,
+    "zero_fuel_weight": 115255.0,
+    "remarks": ""
   }
 ]
