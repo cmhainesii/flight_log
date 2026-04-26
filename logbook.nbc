@@ -302,5 +302,21 @@
     "number_passengers": 109,
     "zero_fuel_weight": 111580.0,
     "remarks": ""
+  },
+  {
+    "id": "2c445706-1e8b-4f20-a9ef-b3bf7202919c",
+    "planned_departure_time": "2026-04-26 01:30",
+    "planned_arrival_time": "2026-04-26 03:20",
+    "flight_number": 1629,
+    "airline": "DAL",
+    "cruise_altitude": 40000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KIAD",
+    "distance_nm": 460,
+    "route": "KBOS/22R N0449F400 BLZZR6 BLZZR DCT BAF HYPER9 KIAD/01R",
+    "aircraft": "B737",
+    "number_passengers": 82,
+    "zero_fuel_weight": 104965.0,
+    "remarks": "Smooth flight. Buttered the bread."
   }
 ]
