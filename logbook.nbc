@@ -414,5 +414,21 @@
     "number_passengers": 4,
     "zero_fuel_weight": 501760.0,
     "remarks": "First flight in 777 in a while. Went very smoothly. Did autoland for this one."
+  },
+  {
+    "id": "4b7b641e-3e62-4883-a99b-d652ac912339",
+    "planned_departure_time": "2026-05-04 02:20",
+    "planned_arrival_time": "2026-05-04 03:48",
+    "flight_number": 9787,
+    "airline": "UPS",
+    "cruise_altitude": 32000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 342,
+    "route": "KBOS/33L N0484F360 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/27R\n",
+    "aircraft": "B77F",
+    "number_passengers": 3,
+    "zero_fuel_weight": 490915.0,
+    "remarks": "Very smooth landing on 27R @ KPHL"
   }
 ]
