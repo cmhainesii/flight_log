@@ -1,8 +1,9 @@
 use std::fmt;
 
 use serde::{Deserialize, Serialize};
+use strum_macros::{EnumIter, VariantNames};
 
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, EnumIter, VariantNames)]
 pub enum Airline {
     DAL,
     AAL,
@@ -10,6 +11,7 @@ pub enum Airline {
     JBU,
     FDX,
     SWA,
+    UPS,
 }
 
 impl Airline {
@@ -21,6 +23,7 @@ impl Airline {
             Airline::JBU => "JBU",
             Airline::FDX => "FDX",
             Airline::SWA => "SWA",
+            Airline::UPS => "UPS",
         }
     }
 }
@@ -34,6 +37,7 @@ impl fmt::Display for Airline {
             Airline::JBU => write!(f, "Jetblue"),
             Airline::SWA => write!(f, "Southwest Airlines"),
             Airline::UAL => write!(f, "United Airlines"),
+            Airline::UPS => write!(f, "UPS Air Cargo"),
         }
     }
 }

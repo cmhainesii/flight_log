@@ -366,5 +366,53 @@
     "number_passengers": 124,
     "zero_fuel_weight": 115255.0,
     "remarks": ""
+  },
+  {
+    "id": "4dbf11e5-d63c-41d7-b590-164e515ce7be",
+    "planned_departure_time": "2026-04-27 00:50",
+    "planned_arrival_time": "2026-04-27 02:08",
+    "flight_number": 1985,
+    "airline": "DAL",
+    "cruise_altitude": 36000,
+    "departure_airport": "KJFK",
+    "arrival_airport": "KIAD",
+    "distance_nm": 275,
+    "route": "KJFK/13R N0448F360 DCT RBV HYPER9 KIAD/01R",
+    "aircraft": "B737",
+    "number_passengers": 116,
+    "zero_fuel_weight": 113295.0,
+    "remarks": ""
+  },
+  {
+    "id": "87ff34f9-4761-44b8-a703-47c762a06799",
+    "planned_departure_time": "2026-04-27 23:45",
+    "planned_arrival_time": "2026-04-28 01:10",
+    "flight_number": 4535,
+    "airline": "DAL",
+    "cruise_altitude": 36000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 358,
+    "route": "KBOS/09 N0445F360 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/09R",
+    "aircraft": "B737",
+    "number_passengers": 114,
+    "zero_fuel_weight": 112805.0,
+    "remarks": "Smooth manual landing from ~ 1300 ft"
+  },
+  {
+    "id": "118e7945-6ba0-4a2a-a72d-d91e3fd65fbb",
+    "planned_departure_time": "2026-05-03 04:10",
+    "planned_arrival_time": "2026-05-03 06:10",
+    "flight_number": 1987,
+    "airline": "UPS",
+    "cruise_altitude": 36000,
+    "departure_airport": "KPHL",
+    "arrival_airport": "KSDF",
+    "distance_nm": 552,
+    "route": "KPHL/27L N0481F320 DCT MXE DCT PENSY J110 FLIRT J6 HVQ Q68 YOCKY LEDDL1 KSDF/35L",
+    "aircraft": "B77F",
+    "number_passengers": 4,
+    "zero_fuel_weight": 501760.0,
+    "remarks": "First flight in 777 in a while. Went very smoothly. Did autoland for this one."
   }
 ]

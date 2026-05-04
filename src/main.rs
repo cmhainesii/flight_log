@@ -7,6 +7,7 @@ use inquire::CustomUserError;
 use inquire::Select;
 use inquire::Text;
 use inquire::validator::Validation;
+use strum::IntoEnumIterator;
 use thousands::Separable;
 use uuid::Uuid;
 
@@ -103,18 +104,7 @@ fn build_log_entry() -> LogEntry {
         .parse::<u16>()
         .expect("Failed to parse input as a number.");
 
-    let options = vec![
-        Airline::DAL,
-        Airline::AAL,
-        Airline::FDX,
-        Airline::JBU,
-        Airline::SWA,
-        Airline::UAL,
-    ];
-
-    
-
-    let airline = Select::new("Airline?", options)
+    let airline = Select::new("Airline?", Airline::iter().collect())
         .prompt()
         .expect("Invalid airline.");
 
@@ -274,11 +264,6 @@ fn main_menu() -> Screen {
     println!();
     return selection;
 }
-
-
-
-
-
 
 fn main() {
 
