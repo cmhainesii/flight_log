@@ -430,5 +430,21 @@
     "number_passengers": 3,
     "zero_fuel_weight": 490915.0,
     "remarks": "Very smooth landing on 27R @ KPHL"
+  },
+  {
+    "id": "ab5e2870-9865-4a7f-949b-240baa042404",
+    "planned_departure_time": "2026-05-04 16:30",
+    "planned_arrival_time": "2026-05-04 17:52",
+    "flight_number": 8797,
+    "airline": "UPS",
+    "cruise_altitude": 35000,
+    "departure_airport": "KPHL",
+    "arrival_airport": "KBOS",
+    "distance_nm": 338,
+    "route": "KPHL/27L N0474F350 DCT DITCH DCT LUIGI DCT HNNAH DCT JFK ROBUC3 KBOS/22L",
+    "aircraft": "B77F",
+    "number_passengers": 3,
+    "zero_fuel_weight": 502315.0,
+    "remarks": ""
   }
 ]
