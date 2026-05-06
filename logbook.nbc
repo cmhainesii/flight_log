@@ -13,7 +13,8 @@
     "aircraft": "B77L",
     "number_passengers": 229,
     "zero_fuel_weight": 402009.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "160b1cc3-fdc4-4685-83cd-52a5f501f783",
@@ -29,7 +30,8 @@
     "aircraft": "A20N",
     "number_passengers": 174,
     "zero_fuel_weight": 133542.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "c51fb27b-54e5-4ccf-bcef-be7949ee6e58",
@@ -45,7 +47,8 @@
     "aircraft": "A20N",
     "number_passengers": 122,
     "zero_fuel_weight": 121634.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "8c5e6bf1-8220-4a34-8442-b7cd11eec8e4",
@@ -61,7 +64,8 @@
     "aircraft": "A20N",
     "number_passengers": 174,
     "zero_fuel_weight": 133542.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "1fafdb35-454e-4d8a-ad69-608377d6bd7e",
@@ -77,7 +81,8 @@
     "aircraft": "A20N",
     "number_passengers": 135,
     "zero_fuel_weight": 124611.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "fef9766e-f31f-4915-96ff-f84349dfd7b0",
@@ -93,7 +98,8 @@
     "aircraft": "A20N",
     "number_passengers": 105,
     "zero_fuel_weight": 117741.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "7afe9dae-2425-4aff-b1da-d3be6ef3d2fa",
@@ -109,7 +115,8 @@
     "aircraft": "A20N",
     "number_passengers": 108,
     "zero_fuel_weight": 118428.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "d7edb9d2-ee49-40a1-9fb3-2c02d7f5e99d",
@@ -125,7 +132,8 @@
     "aircraft": "A20N",
     "number_passengers": 171,
     "zero_fuel_weight": 132855.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "736f2742-28ee-4e47-ae10-d0dccb00cb3f",
@@ -141,7 +149,8 @@
     "aircraft": "A20N",
     "number_passengers": 109,
     "zero_fuel_weight": 118657.0,
-    "remarks": "Arrival aborted at 500ft AGL due to single event upset (SEU) resulting from G2 Geomagnetic Storm (Kp 6-). Verified solar wind collision at 700 km/s."
+    "remarks": "Arrival aborted at 500ft AGL due to single event upset (SEU) resulting from G2 Geomagnetic Storm (Kp 6-). Verified solar wind collision at 700 km/s.",
+    "actuals": null
   },
   {
     "id": "69a421e1-568e-48c1-b39f-8ced3da3b15e",
@@ -157,7 +166,8 @@
     "aircraft": "A20N",
     "number_passengers": 158,
     "zero_fuel_weight": 129878.0,
-    "remarks": "Smooth crosswind landing 27R"
+    "remarks": "Smooth crosswind landing 27R",
+    "actuals": null
   },
   {
     "id": "dd9f282e-417e-4a42-b2f8-9a79713475a5",
@@ -173,7 +183,8 @@
     "aircraft": "A20N",
     "number_passengers": 174,
     "zero_fuel_weight": 133542.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "abe6b314-adac-4f9d-895d-3824f1d2805c",
@@ -189,7 +200,8 @@
     "aircraft": "A20N",
     "number_passengers": 145,
     "zero_fuel_weight": 126901.0,
-    "remarks": "Beautiful landing"
+    "remarks": "Beautiful landing",
+    "actuals": null
   },
   {
     "id": "b4065210-f18e-4fcf-a99e-f404012ac92d",
@@ -205,7 +217,8 @@
     "aircraft": "A20N",
     "number_passengers": 111,
     "zero_fuel_weight": 119115.0,
-    "remarks": "Problem with autopilot during landing. Salvaged landing."
+    "remarks": "Problem with autopilot during landing. Salvaged landing.",
+    "actuals": null
   },
   {
     "id": "2b774d2a-1899-491c-8093-f94bb7ef1c6c",
@@ -221,7 +234,8 @@
     "aircraft": "A20N",
     "number_passengers": 117,
     "zero_fuel_weight": 120489.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "8014545a-f2e2-48e3-8929-f1264356e592",
@@ -237,7 +251,8 @@
     "aircraft": "B737",
     "number_passengers": 111,
     "zero_fuel_weight": 111515.0,
-    "remarks": "First flight in 737 in a while. Went smoothly. Autoland worked as expected. Had to remember to NOT taxi to the jetblue terminal!"
+    "remarks": "First flight in 737 in a while. Went smoothly. Autoland worked as expected. Had to remember to NOT taxi to the jetblue terminal!",
+    "actuals": null
   },
   {
     "id": "3e605bdb-67f8-47eb-be92-a4c88a69b350",
@@ -253,7 +268,8 @@
     "aircraft": "B737",
     "number_passengers": 128,
     "zero_fuel_weight": 121700.0,
-    "remarks": "Skipped parking at gate was tired"
+    "remarks": "Skipped parking at gate was tired",
+    "actuals": null
   },
   {
     "id": "6afa0f6b-05e3-46b5-9ae4-008f8c568bad",
@@ -269,7 +285,8 @@
     "aircraft": "B737",
     "number_passengers": 92,
     "zero_fuel_weight": 107415.0,
-    "remarks": "Smooth landing on 27R at KPHL xD"
+    "remarks": "Smooth landing on 27R at KPHL xD",
+    "actuals": null
   },
   {
     "id": "c710a96f-1d70-4bf7-8fdf-120de921fc02",
@@ -285,7 +302,8 @@
     "aircraft": "B737",
     "number_passengers": 113,
     "zero_fuel_weight": 112560.0,
-    "remarks": "Missed approach, very smooth manual landing on the second approach to 09R!"
+    "remarks": "Missed approach, very smooth manual landing on the second approach to 09R!",
+    "actuals": null
   },
   {
     "id": "b6d27584-aa07-4f43-b4b4-08c37a393e6c",
@@ -301,7 +319,8 @@
     "aircraft": "B737",
     "number_passengers": 109,
     "zero_fuel_weight": 111580.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "2c445706-1e8b-4f20-a9ef-b3bf7202919c",
@@ -317,7 +336,8 @@
     "aircraft": "B737",
     "number_passengers": 82,
     "zero_fuel_weight": 104965.0,
-    "remarks": "Smooth flight. Buttered the bread."
+    "remarks": "Smooth flight. Buttered the bread.",
+    "actuals": null
   },
   {
     "id": "05940beb-21f6-4b69-94d8-fd2b7e22e6fe",
@@ -333,7 +353,8 @@
     "aircraft": "B737",
     "number_passengers": 114,
     "zero_fuel_weight": 112805.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "76095332-e57d-41a3-ae02-adaa59b0e1cc",
@@ -349,7 +370,8 @@
     "aircraft": "B737",
     "number_passengers": 124,
     "zero_fuel_weight": 115255.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "07ae2a0c-73e4-4ab2-bbf3-a59c48ec8e59",
@@ -365,7 +387,8 @@
     "aircraft": "B737",
     "number_passengers": 124,
     "zero_fuel_weight": 115255.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "4dbf11e5-d63c-41d7-b590-164e515ce7be",
@@ -381,7 +404,8 @@
     "aircraft": "B737",
     "number_passengers": 116,
     "zero_fuel_weight": 113295.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
   },
   {
     "id": "87ff34f9-4761-44b8-a703-47c762a06799",
@@ -397,7 +421,8 @@
     "aircraft": "B737",
     "number_passengers": 114,
     "zero_fuel_weight": 112805.0,
-    "remarks": "Smooth manual landing from ~ 1300 ft"
+    "remarks": "Smooth manual landing from ~ 1300 ft",
+    "actuals": null
   },
   {
     "id": "118e7945-6ba0-4a2a-a72d-d91e3fd65fbb",
@@ -413,7 +438,8 @@
     "aircraft": "B77F",
     "number_passengers": 4,
     "zero_fuel_weight": 501760.0,
-    "remarks": "First flight in 777 in a while. Went very smoothly. Did autoland for this one."
+    "remarks": "First flight in 777 in a while. Went very smoothly. Did autoland for this one.",
+    "actuals": null
   },
   {
     "id": "4b7b641e-3e62-4883-a99b-d652ac912339",
@@ -429,7 +455,8 @@
     "aircraft": "B77F",
     "number_passengers": 3,
     "zero_fuel_weight": 490915.0,
-    "remarks": "Very smooth landing on 27R @ KPHL"
+    "remarks": "Very smooth landing on 27R @ KPHL",
+    "actuals": null
   },
   {
     "id": "ab5e2870-9865-4a7f-949b-240baa042404",
@@ -445,6 +472,27 @@
     "aircraft": "B77F",
     "number_passengers": 3,
     "zero_fuel_weight": 502315.0,
-    "remarks": ""
+    "remarks": "",
+    "actuals": null
+  },
+  {
+    "id": "3aff5e4c-52bc-4041-bc90-9e143d71f5ef",
+    "planned_departure_time": "2026-04-20 16:00",
+    "planned_arrival_time": "2026-04-20 18:10",
+    "flight_number": 1818,
+    "airline": "DAL",
+    "cruise_altitude": 32000,
+    "departure_airport": "KPHL",
+    "arrival_airport": "KBOS",
+    "distance_nm": 203,
+    "route": "KPHL KBOS",
+    "aircraft": "B77L",
+    "number_passengers": 111,
+    "zero_fuel_weight": 125545.0,
+    "remarks": "",
+    "actuals": {
+      "departure": "2026-04-20 16:12",
+      "arrival": "2026-04-20 18:24"
+    }
   }
 ]

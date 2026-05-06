@@ -16,11 +16,14 @@ mod log_book;
 mod log_entry;
 mod airline;
 mod aircraft;
+mod actual_times;
 
 use log_book::LogBook;
 use log_entry::LogEntry;
 use airline::Airline;
 use aircraft::Aircraft;
+
+use crate::actual_times::ActualTimes;
 
 const FILENAME: &str = "logbook.nbc";
 
@@ -178,6 +181,36 @@ fn build_log_entry() -> LogEntry {
         .expect("Error parsing pilot remarks.");
 
     
+    let options = vec!["Yes", "No"];
+    let enter_actuals = Select::new("Enter Actual Flight Times Now?", options)
+        .with_help_message("If you don't have the actual times of the flight, select no.")
+        .prompt()
+        .expect("Input error!");
+
+    let mut actuals = None;
+
+    if enter_actuals == "Yes" {
+        let depature = Text::new("Actual Departure Time?")
+            .with_placeholder("2026-05-06 16:28")
+            .with_help_message("Enter your actual departure time.")
+            .with_validator(datetime_validator)
+            .prompt()
+            .expect("Input error.");
+
+        let arrival = Text::new("Actual Arrival Time?")
+            .with_placeholder("2026-05-06 20:31")
+            .with_help_message("Enter your actual arrival time.")
+            .with_validator(datetime_validator)
+            .prompt()
+            .expect("Input error");
+
+        actuals = Some(ActualTimes {
+            departure: Some(depature),
+            arrival: Some(arrival),
+        })
+    }
+
+    
     
 
     let new_entry = LogEntry {
@@ -194,7 +227,8 @@ fn build_log_entry() -> LogEntry {
         aircraft,
         number_passengers,
         zero_fuel_weight,
-        remarks
+        remarks,
+        actuals,
     };
 
 

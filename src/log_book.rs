@@ -96,6 +96,15 @@ impl LogBook {
             println!("                  Load: {:.2}%", entry.get_load_percent());
             println!("    Passenger Capacity: {:.2}%", entry.get_psx_percent());
             println!("         Pilot Remarks: {}", entry.remarks);
+            match &entry.actuals {
+                Some(actuals) => {
+                    actuals.print_actuals();
+                }
+                _ => { 
+                    println!("[ No Actual Times Recorded Yet ]");
+                 }
+            }
+
             println!();
         }
     }

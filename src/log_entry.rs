@@ -3,6 +3,7 @@ use uuid::Uuid;
 
 use crate::Aircraft;
 use crate::Airline;
+use crate::ActualTimes;
 
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -21,6 +22,7 @@ pub struct LogEntry {
     pub number_passengers: u32,
     pub zero_fuel_weight: f64,
     pub remarks: String,
+    pub actuals: Option<ActualTimes>,
 
 }
 
