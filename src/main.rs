@@ -239,7 +239,6 @@ fn build_log_entry() -> LogEntry {
             in_flight: Some(in_flight),
             landed: Some(landed),
             shutdown: Some(shutdown)
-            
         })
     }
 
@@ -281,6 +280,14 @@ fn build_log_entry() -> LogEntry {
     println!("                  Load: {:.2}%", new_entry.get_load_percent());
     println!("    Passenger Capacity: {:.2}%", new_entry.get_psx_percent());
     println!("         Pilot Remarks: {}", new_entry.remarks);
+    match &new_entry.actuals {
+                Some(actuals) => {
+                    actuals.print_actuals();
+                }
+                _ => { 
+                    println!("[ No Actual Times Recorded Yet ]");
+                 }
+            }
     println!();
 
     return new_entry;

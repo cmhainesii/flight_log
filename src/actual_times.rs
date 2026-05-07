@@ -17,21 +17,21 @@ impl ActualTimes {
     pub fn print_actuals(&self) {
         match &self.startup {
             Some(startup) => {
-                println!("Startup: {startup}")
+                println!("  Startup: {startup}")
             }
             _ => { }
         }
 
         match &self.taxi {
             Some(taxi) => {
-                println!("Taxi: {taxi}")
+                println!("     Taxi: {taxi}")
             }
             _ => { }
         }
 
         match &self.takeoff {
             Some(takeoff) => {
-                println!("Takeoff: {takeoff}");
+                println!("  Takeoff: {takeoff}");
             }
             _ => { }
         }
@@ -45,14 +45,14 @@ impl ActualTimes {
 
         match &self.landed {
             Some(landed) => {
-                println!("Landed: {landed}");
+                println!("   Landed: {landed}");
             }
             _ => { }
         }
 
         match & self.shutdown {
             Some(shutdown) => {
-                println!("Shutdown: {shutdown}");
+                println!(" Shutdown: {shutdown}");
             }
             _ => { }
         }
