@@ -190,23 +190,56 @@ fn build_log_entry() -> LogEntry {
     let mut actuals = None;
 
     if enter_actuals == "Yes" {
-        let depature = Text::new("Actual Departure Time?")
+        let startup = Text::new("Startup Time?")
             .with_placeholder("2026-05-06 16:28")
-            .with_help_message("Enter your actual departure time.")
+            .with_help_message("Enter your startup time.")
             .with_validator(datetime_validator)
             .prompt()
             .expect("Input error.");
 
-        let arrival = Text::new("Actual Arrival Time?")
-            .with_placeholder("2026-05-06 20:31")
-            .with_help_message("Enter your actual arrival time.")
+        let taxi = Text::new("Taxi Time?")
+            .with_placeholder("2026-05-06 16:48")
+            .with_help_message("Enter your taxi start time.")
             .with_validator(datetime_validator)
             .prompt()
             .expect("Input error");
 
+        let takeoff = Text::new("Takeoff Time?")
+            .with_placeholder("2026-05-06 17:00")
+            .with_help_message("Enter your takeoff start time.")
+            .with_validator(datetime_validator)
+            .prompt()
+            .expect("Input error.");
+
+        let in_flight = Text::new("In-Flight Start Time?")
+            .with_placeholder("2026-05-06 17:01")
+            .with_help_message("Enter the time the aircraft went airborne.")
+            .with_validator(datetime_validator)
+            .prompt()
+            .expect("Input error.");
+
+        let landed = Text::new("Landed Time?")
+            .with_placeholder("2026-05-06 18:19")
+            .with_help_message("Enter the time the plane landed on the runway.")
+            .with_validator(datetime_validator)
+            .prompt()
+            .expect("Input error.");
+
+        let shutdown = Text::new("Shutdown Time?")
+            .with_placeholder("2026-05-06 18:35")
+            .with_help_message("Enter the time you shut down the engines.")
+            .with_validator(datetime_validator)
+            .prompt()
+            .expect("Input error.");
+
         actuals = Some(ActualTimes {
-            departure: Some(depature),
-            arrival: Some(arrival),
+            startup: Some(startup),
+            taxi: Some(taxi),
+            takeoff: Some(takeoff),
+            in_flight: Some(in_flight),
+            landed: Some(landed),
+            shutdown: Some(shutdown)
+            
         })
     }
 
