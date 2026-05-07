@@ -494,5 +494,25 @@
       "departure": "2026-04-20 16:12",
       "arrival": "2026-04-20 18:24"
     }
+  },
+  {
+    "id": "a4769862-2db6-4247-89bb-91899984bb8c",
+    "planned_departure_time": "2026-05-07 00:15",
+    "planned_arrival_time": "2026-05-07 01:48",
+    "flight_number": 3928,
+    "airline": "DAL",
+    "cruise_altitude": 28000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 354,
+    "route": "KBOS/22R N0483F280 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/27R",
+    "aircraft": "B77L",
+    "number_passengers": 284,
+    "zero_fuel_weight": 415484.0,
+    "remarks": "Autoland kicked off, landed manually without issue.",
+    "actuals": {
+      "departure": "2026-05-07 00:59",
+      "arrival": "2026-05-07 02:14"
+    }
   }
 ]
