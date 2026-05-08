@@ -12,7 +12,6 @@ pub struct ActualTimes {
 }
 
 
-#[allow(dead_code)]
 impl ActualTimes {
     pub fn print_actuals(&self) {
         match &self.startup {

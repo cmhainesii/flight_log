@@ -58,10 +58,21 @@ impl LogBook {
         let _ = writeln!(output, "        Total Miles Flown: {} NM", self.calculate_total_miles());
         let _ = writeln!(output, "     Average Load Percent: {:.02} %", self.calculate_average_load_percent());
         let _ = writeln!(output, "Average Passenger Percent: {:.02} %", self.calculate_average_psx_percent());
+        let _ = writeln!(output, "   Average Route Distance: {:.02} NM", self.calculate_average_route_length());
         output
     }
 
-    pub fn calculate_average_load_percent(&self) -> f64 {
+    fn calculate_average_route_length(&self) -> f64 {
+        let mut sum = 0;
+
+        for entry in &self.logs {
+            sum += entry.distance_nm;
+        }
+        return sum as f64 / self.logs.len() as f64;
+    }
+
+
+    fn calculate_average_load_percent(&self) -> f64 {
         let mut sum = 0;
         for entry in &self.logs {
             sum += entry.get_load_percent() as i32;
@@ -69,7 +80,7 @@ impl LogBook {
         return sum as f64 / self.logs.len() as f64
     }
 
-    pub fn calculate_average_psx_percent(&self) -> f64 {
+    fn calculate_average_psx_percent(&self) -> f64 {
         let mut sum = 0;
         for entry in &self.logs {
             sum += entry.get_psx_percent() as i32;
