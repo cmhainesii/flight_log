@@ -498,29 +498,5 @@
       "landed": null,
       "shutdown": "2026-05-07 02:14"
     }
-  },
-  {
-    "id": "9ded3487-f120-425e-bd88-838cb2596b79",
-    "planned_departure_time": "2026-05-07 10:00",
-    "planned_arrival_time": "2026-05-07 11:30",
-    "flight_number": 2929,
-    "airline": "DAL",
-    "cruise_altitude": 39000,
-    "departure_airport": "KPHL",
-    "arrival_airport": "KBOS",
-    "distance_nm": 303,
-    "route": "KPHL KBOS",
-    "aircraft": "B77L",
-    "number_passengers": 245,
-    "zero_fuel_weight": 415328.0,
-    "remarks": "",
-    "actuals": {
-      "startup": "2026-05-07 9:25",
-      "taxi": "2026-05-07 9:43",
-      "takeoff": "2026-05-07 10:01",
-      "in_flight": "2026-05-07 10:01",
-      "landed": "2026-05-07 11:34",
-      "shutdown": "2026-05-07 11:45"
-    }
   }
 ]

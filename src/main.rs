@@ -285,7 +285,7 @@ fn build_log_entry() -> LogEntry {
                     actuals.print_actuals();
                 }
                 _ => { 
-                    println!("[ No Actual Times Recorded Yet ]");
+                    println!("[ No Actual Times Recorded ]");
                  }
             }
     println!();
