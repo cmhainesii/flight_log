@@ -498,5 +498,29 @@
       "landed": null,
       "shutdown": "2026-05-07 02:14"
     }
+  },
+  {
+    "id": "5f68548a-c8dc-4d4e-b36d-f5d3ab702bff",
+    "planned_departure_time": "2026-05-09 03:00",
+    "planned_arrival_time": "2026-05-09 04:23",
+    "flight_number": 2838,
+    "airline": "DAL",
+    "cruise_altitude": 23000,
+    "departure_airport": "KPHL",
+    "arrival_airport": "KBOS",
+    "distance_nm": 338,
+    "route": "KPHL/27L N0431F230 DCT DITCH DCT LUIGI DCT HNNAH DCT JFK ROBUC3 KBOS/22L",
+    "aircraft": "B77L",
+    "number_passengers": 247,
+    "zero_fuel_weight": 406419.0,
+    "remarks": "Buttered the bread at KBOS",
+    "actuals": {
+      "startup": "2026-05-09 02:45",
+      "taxi": "2026-05-09 03:08",
+      "takeoff": "2026-05-09 03:17",
+      "in_flight": "2026-05-09 03:17",
+      "landed": "2026-05-09 04:10",
+      "shutdown": "2026-05-09 04:15"
+    }
   }
 ]
