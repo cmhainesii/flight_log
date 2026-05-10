@@ -1,5 +1,6 @@
 use core::fmt;
-use std::env::current_exe;
+use std::env;
+use std::path::PathBuf;
 use std::vec;
 
 use chrono::NaiveDateTime;
@@ -340,15 +341,25 @@ fn main_menu() -> Screen {
     return selection;
 }
 
+fn get_logbook_path() -> PathBuf {
+    // 1. Check if we are running under Cargo
+    if let Ok(manifest_dir) = env::var("CARGO_MANIFEST_DIR") {
+        PathBuf::from(manifest_dir).join("logbook.nbc")
+    } else {
+        // 2. We are in Production mode
+        let exe_path = env::current_exe().expect("Failed to get executable path");
+        let exe_dir = exe_path.parent().expect("Failed to get executable directory");
+        exe_dir.join("logbook.nbc")
+    }
+}
+
 fn main() {
 
-    let exe_path = current_exe().expect("Failed to get executable path");
-    let exe_dir = exe_path.parent().expect("Failed to get executable directory");
-    let file_path = exe_dir.join("logbook.nbc").to_string_lossy().to_string();
+    
 
 
     // Load flights from json if they exist, or else create a new blank logbook.
-    let mut logbook = LogBook::load_existing_log_entries(file_path);
+    let mut logbook = LogBook::load_existing_log_entries(get_logbook_path().to_string_lossy().to_string());
 
     let mut finished = false;
     let mut current_screen = Screen::MainMenu;
