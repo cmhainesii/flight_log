@@ -522,5 +522,29 @@
       "landed": "2026-05-09 04:10",
       "shutdown": "2026-05-09 04:15"
     }
+  },
+  {
+    "id": "4fc38cc2-c111-415d-91b6-9b2bf601250d",
+    "planned_departure_time": "2026-05-09 22:15",
+    "planned_arrival_time": "2026-05-09 23:45",
+    "flight_number": 287,
+    "airline": "DAL",
+    "cruise_altitude": 30000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 354,
+    "route": "KBOS/22R N0481F300 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/27R",
+    "aircraft": "B77L",
+    "number_passengers": 297,
+    "zero_fuel_weight": 418669.0,
+    "remarks": "Foggy overcast at KBOS. Conditions slightly better at KPHL. Smooth Landing. Bread Buttered.",
+    "actuals": {
+      "startup": "2026-05-09 21:54",
+      "taxi": "2026-05-09 22:16",
+      "takeoff": "2026-05-09 22:19",
+      "in_flight": "2026-05-09 22:19",
+      "landed": "2026-05-09 23:19",
+      "shutdown": "2026-05-09 23:22"
+    }
   }
 ]
