@@ -546,5 +546,29 @@
       "landed": "2026-05-09 23:19",
       "shutdown": "2026-05-09 23:22"
     }
+  },
+  {
+    "id": "e024f7c6-5783-4eed-bfea-37ee08d4ee41",
+    "planned_departure_time": "2026-05-10 03:00",
+    "planned_arrival_time": "2026-05-10 04:23",
+    "flight_number": 1997,
+    "airline": "DAL",
+    "cruise_altitude": 23000,
+    "departure_airport": "KPHL",
+    "arrival_airport": "KBOS",
+    "distance_nm": 338,
+    "route": "KPHL/27L N0429F230 DCT DITCH DCT LUIGI DCT HNNAH DCT JFK ROBUC3 KBOS/22L",
+    "aircraft": "B77L",
+    "number_passengers": 188,
+    "zero_fuel_weight": 391964.0,
+    "remarks": "Rogue DLH-425 flight missed on 22L started flying traffic pattern for 22L after missed without radio contact and was heading directly toward an inbound A321 for ILS 22L. I asked DLH-425, say intentions, they immediately disconnected from the network. Smooth landing on 22L @ KBOS.",
+    "actuals": {
+      "startup": "2026-05-10 02:36",
+      "taxi": "2026-05-10 02:48",
+      "takeoff": "2026-05-10 02:50",
+      "in_flight": "2026-05-10 02:53",
+      "landed": "2026-05-10 03:47",
+      "shutdown": "2026-05-10 03:54"
+    }
   }
 ]
