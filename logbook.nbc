@@ -570,5 +570,29 @@
       "landed": "2026-05-10 03:47",
       "shutdown": "2026-05-10 03:54"
     }
+  },
+  {
+    "id": "af917e0a-ddb4-4521-9218-baa03e4f19d9",
+    "planned_departure_time": "2026-05-10 14:40",
+    "planned_arrival_time": "2026-05-10 16:08",
+    "flight_number": 1628,
+    "airline": "DAL",
+    "cruise_altitude": 39000,
+    "departure_airport": "KIAD",
+    "arrival_airport": "KBOS",
+    "distance_nm": 453,
+    "route": "KIAD/30 N0471F390 JCOBY4 SWANN DCT BROSS Q419 JFK ROBUC3 KBOS/22L",
+    "aircraft": "B77L",
+    "number_passengers": 274,
+    "zero_fuel_weight": 413034.0,
+    "remarks": "Great ATC service from BOS Ctr & Gnd. Very buttery landing on 22R @ KBOS",
+    "actuals": {
+      "startup": "2026-05-10 14:22",
+      "taxi": "2026-05-10 14:36",
+      "takeoff": "2026-05-10 14:41",
+      "in_flight": "2026-05-10 14:42",
+      "landed": "2026-05-10 15:51",
+      "shutdown": "2026-05-10 15:58"
+    }
   }
 ]
