@@ -4,8 +4,8 @@ use std::fmt::Write;
 use thousands::Separable;
 use crate::log_entry::LogEntry;
 pub struct LogBook {
-    logs: Vec<LogEntry>
-
+    logs: Vec<LogEntry>,
+    file_path: String
 }
 
 impl LogBook {
@@ -17,7 +17,7 @@ impl LogBook {
         let mut json = serde_json::to_string_pretty(&self.logs)
             .expect("Error saving logbook to disk.");
         json.push('\n');
-        fs::write(crate::FILENAME, json)
+        fs::write(&self.file_path, json)
             .expect("Error writing logbook to disk");
     }
 
@@ -26,17 +26,24 @@ impl LogBook {
         self.logs.iter().map(|entry| entry.distance_nm).sum()
     }
 
-    pub fn load_existing_log_entries(file_path: &str) -> LogBook {
-        match fs::read_to_string(file_path) {
+    pub fn load_existing_log_entries(file_path: String) -> LogBook {
+        let contents = fs::read_to_string(&file_path);
+        match contents {
             Ok(json_contents) => {
                 match serde_json::from_str::<Vec<LogEntry>>(&json_contents) {
                     Ok(logbook) => {
                         println!("Successfully loaded {} entries from the logbook.", logbook.len());
-                        LogBook { logs: logbook }
+                        LogBook {
+                            logs: logbook,
+                            file_path: file_path
+                        }
                     }
                     Err(e) => {
                         eprintln!("Error parsing the logbook JSON: {}", e);
-                        LogBook { logs: Vec::new() }
+                        LogBook {
+                            logs: Vec::new(),
+                            file_path:file_path
+                        }
                     }
                 }
             }
@@ -44,10 +51,14 @@ impl LogBook {
                 // Check specifically if the error is because the file doesn't exist
                 if e.kind() == ErrorKind::NotFound {
                     println!("No existing logbook found. A new logbook has been created.");
-                    LogBook { logs: Vec::new() }
+                    LogBook {
+                        logs: Vec::new(),
+                        file_path:file_path}
                 } else {
                     eprintln!("An error occurred when attempting to read the logbook: {}", e);
-                    LogBook { logs: Vec::new() }
+                    LogBook {
+                        logs: Vec::new(),
+                        file_path:file_path}
                 }
             }
         }

@@ -1,4 +1,5 @@
 use core::fmt;
+use std::env::current_exe;
 use std::vec;
 
 use chrono::NaiveDateTime;
@@ -25,7 +26,7 @@ use aircraft::Aircraft;
 
 use crate::actual_times::ActualTimes;
 
-const FILENAME: &str = "logbook.nbc";
+
 
 fn format_altitude(altitude: u32) -> String {
     if altitude >= 18_000 {
@@ -341,8 +342,13 @@ fn main_menu() -> Screen {
 
 fn main() {
 
+    let exe_path = current_exe().expect("Failed to get executable path");
+    let exe_dir = exe_path.parent().expect("Failed to get executable directory");
+    let file_path = exe_dir.join("logbook.nbc").to_string_lossy().to_string();
+
+
     // Load flights from json if they exist, or else create a new blank logbook.
-    let mut logbook = LogBook::load_existing_log_entries(FILENAME);
+    let mut logbook = LogBook::load_existing_log_entries(file_path);
 
     let mut finished = false;
     let mut current_screen = Screen::MainMenu;
