@@ -594,5 +594,53 @@
       "landed": "2026-05-10 15:51",
       "shutdown": "2026-05-10 15:58"
     }
+  },
+  {
+    "id": "3d26927c-5f58-474c-923d-9e697885d8d7",
+    "planned_departure_time": "2026-05-10 23:00",
+    "planned_arrival_time": "2026-05-11 05:41",
+    "flight_number": 1997,
+    "airline": "DAL",
+    "cruise_altitude": 39000,
+    "departure_airport": "KJFK",
+    "arrival_airport": "EGLL",
+    "distance_nm": 3074,
+    "route": "KJFK/22R N0481F370 DCT MERIT DCT HFD DCT PUT DCT WITCH DCT ALLEX N565B TUDEP/M083F390 NATW NETKI/N0474F390 DCT BOFUM Q37 MALUD Q38 NUGRA NUGR2H EGLL/27R",
+    "aircraft": "B77L",
+    "number_passengers": 253,
+    "zero_fuel_weight": 407889.0,
+    "remarks": "First international VATSIM flight completed! Very smooth manual landing. Foreign Bread Status: <Buttered>.",
+    "actuals": {
+      "startup": "2026-05-10 22:54",
+      "taxi": "2026-05-10 23:21",
+      "takeoff": "2026-05-10 23:27",
+      "in_flight": "2026-05-10 23:28",
+      "landed": "2026-05-11 05:38",
+      "shutdown": "2026-05-11 05:46"
+    }
+  },
+  {
+    "id": "69fa1034-9c60-4517-9b47-221ff4bf22f0",
+    "planned_departure_time": "2026-05-11 17:15",
+    "planned_arrival_time": "2026-05-11 18:49",
+    "flight_number": 1987,
+    "airline": "DAL",
+    "cruise_altitude": 30000,
+    "departure_airport": "KBOS",
+    "arrival_airport": "KPHL",
+    "distance_nm": 359,
+    "route": "KBOS/33L N0490F300 SSOXS7 SSOXS Q167 RIFLE Q439 BRIGS JIIMS4 KPHL/09R",
+    "aircraft": "B77L",
+    "number_passengers": 297,
+    "zero_fuel_weight": 418669.0,
+    "remarks": "",
+    "actuals": {
+      "startup": "2026-05-11 16:51",
+      "taxi": "2026-05-11 17:08",
+      "takeoff": "2026-05-11 17:17",
+      "in_flight": "2026-05-11 17:17",
+      "landed": "2026-05-11 18:20",
+      "shutdown": "2026-05-11 18:23"
+    }
   }
 ]

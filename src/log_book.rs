@@ -2,6 +2,7 @@ use std::{fs, io::ErrorKind};
 use std::fmt::Write;
 
 use thousands::Separable;
+use crate::actual_times::ActualTimes;
 use crate::log_entry::LogEntry;
 pub struct LogBook {
     logs: Vec<LogEntry>,
@@ -9,6 +10,11 @@ pub struct LogBook {
 }
 
 impl LogBook {
+
+    pub fn len(&self) -> usize {
+        self.logs.len()
+    }
+
     pub fn add(&mut self, entry: LogEntry) {
         self.logs.push(entry);
     }
@@ -62,6 +68,10 @@ impl LogBook {
                 }
             }
         }
+    }
+
+    pub fn attach_actuals(&mut self, times: ActualTimes, index: usize) {
+        self.logs.get_mut(index).expect("Log index not found").actuals = Some(times)
     }
 
     pub fn get_statistics(&self) -> String {

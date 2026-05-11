@@ -305,6 +305,7 @@ enum Screen {
     BuildLogEntry,
     ViewLogbook,
     ViewStatistics,
+    AttachActuals,
     Exit,
 }
 
@@ -315,6 +316,7 @@ impl fmt::Display for Screen {
             Screen::BuildLogEntry => write!(f, "Create New Flight Plan"),
             Screen::ViewLogbook => write!(f, "View Log Entries"),
             Screen::ViewStatistics => write!(f, "View Statistics"),
+            Screen::AttachActuals => write!(f, "Attach Actuals"),
             Screen::Exit => write!(f, "Exit"),
         }
     }
@@ -331,6 +333,7 @@ fn main_menu() -> Screen {
         Screen::BuildLogEntry,
         Screen::ViewLogbook,
         Screen::ViewStatistics,
+        Screen::AttachActuals,
         Screen::Exit
     ];
 
@@ -351,6 +354,71 @@ fn get_logbook_path() -> PathBuf {
         let exe_dir = exe_path.parent().expect("Failed to get executable directory");
         exe_dir.join("logbook.nbc")
     }
+}
+
+pub fn collect_actuals() -> ActualTimes {
+
+    let datetime_validator = |input: &str| -> Result<Validation, CustomUserError> {
+        match NaiveDateTime::parse_from_str(input, "%Y-%m-%d %H:%M") {
+            Ok(_) => Ok(Validation::Valid),
+            Err(_) => Ok(Validation::Invalid("Format must be YYYY-MM-DD HH:MM (e.g. 2026-04-20 19:00)".into())),
+        }
+    };
+
+
+
+    let startup = Text::new("Startup Time?")
+        .with_placeholder("2026-05-06 16:28")
+        .with_help_message("Enter your startup time.")
+        .with_validator(datetime_validator)
+        .prompt()
+        .expect("Input error.");
+
+    let taxi = Text::new("Taxi Time?")
+        .with_placeholder("2026-05-06 16:48")
+        .with_help_message("Enter your taxi start time.")
+        .with_validator(datetime_validator)
+        .prompt()
+        .expect("Input error");
+
+    let takeoff = Text::new("Takeoff Time?")
+        .with_placeholder("2026-05-06 17:00")
+        .with_help_message("Enter your takeoff start time.")
+        .with_validator(datetime_validator)
+        .prompt()
+        .expect("Input error.");
+
+    let in_flight = Text::new("In-Flight Start Time?")
+        .with_placeholder("2026-05-06 17:01")
+        .with_help_message("Enter the time the aircraft went airborne.")
+        .with_validator(datetime_validator)
+        .prompt()
+        .expect("Input error.");
+
+    let landed = Text::new("Landed Time?")
+        .with_placeholder("2026-05-06 18:19")
+        .with_help_message("Enter the time the plane landed on the runway.")
+        .with_validator(datetime_validator)
+        .prompt()
+        .expect("Input error.");
+
+    let shutdown = Text::new("Shutdown Time?")
+        .with_placeholder("2026-05-06 18:35")
+        .with_help_message("Enter the time you shut down the engines.")
+        .with_validator(datetime_validator)
+        .prompt()
+        .expect("Input error.");
+
+
+    ActualTimes { 
+        startup: Some(startup),
+        taxi: Some(taxi),
+        takeoff: Some(takeoff),
+        in_flight: Some(in_flight),
+        landed: Some(landed),
+        shutdown: Some(shutdown) 
+    }
+    
 }
 
 fn main() {
@@ -382,7 +450,36 @@ fn main() {
                 println!("{}", logbook.get_statistics());
                 println!();
                 main_menu()
-            }
+            },
+            Screen::AttachActuals => {
+                
+                let actuals = collect_actuals();
+                
+                let index_validator = |input: &str| -> Result<Validation, CustomUserError> {
+                    match input.parse::<usize>() {
+                        Ok(val) if val > 0 && val <= logbook.len() => Ok(Validation::Valid),
+                        _ => Ok(Validation::Invalid(
+                            format!("Error: Invalid log entry index number. Please enter a number between 1 and {}.", logbook.len()).into()
+                        )),
+                    }
+                };
+
+                let entry_index = Text::new("Log Entry Index?")
+                    .with_placeholder("1")
+                    .with_help_message("Enter the index number of the log entry you wish to attach actual flight times.")
+                    .with_validator(index_validator)
+                    .prompt()
+                    .expect("Input error.")
+                    .parse::<usize>()
+                    .expect("Invalid index") - 1;
+
+                logbook.attach_actuals(actuals, entry_index);
+                logbook.save();
+                main_menu()
+
+
+                
+            },
             Screen::Exit => { finished = true; Screen::Exit },
         };
 
