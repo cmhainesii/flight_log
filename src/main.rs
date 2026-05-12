@@ -306,6 +306,7 @@ enum Screen {
     ViewLogbook,
     ViewStatistics,
     AttachActuals,
+    AttachActualsFromFile,
     Exit,
 }
 
@@ -316,7 +317,8 @@ impl fmt::Display for Screen {
             Screen::BuildLogEntry => write!(f, "Create New Flight Plan"),
             Screen::ViewLogbook => write!(f, "View Log Entries"),
             Screen::ViewStatistics => write!(f, "View Statistics"),
-            Screen::AttachActuals => write!(f, "Attach Actuals"),
+            Screen::AttachActuals => write!(f, "Attach Actuals (Manual)"),
+            Screen::AttachActualsFromFile => write!(f, "Attach Actuals (From JSON)"),
             Screen::Exit => write!(f, "Exit"),
         }
     }
@@ -334,6 +336,7 @@ fn main_menu() -> Screen {
         Screen::ViewLogbook,
         Screen::ViewStatistics,
         Screen::AttachActuals,
+        Screen::AttachActualsFromFile,
         Screen::Exit
     ];
 
@@ -479,6 +482,47 @@ fn main() {
 
 
                 
+            },
+            Screen::AttachActualsFromFile => {
+                let file_path = Text::new("Path to actuals JSON file?")
+                    .with_placeholder("actuals.json")
+                    .with_help_message("Enter the path to the JSON file containing the actual flight times.")
+                    .prompt()
+                    .expect("Input error.");
+
+                match std::fs::read_to_string(&file_path) {
+                    Ok(json_contents) => {
+                        match serde_json::from_str::<ActualTimes>(&json_contents) {
+                            Ok(actuals) => {
+                                let index_validator = |input: &str| -> Result<Validation, CustomUserError> {
+                                    match input.parse::<usize>() {
+                                        Ok(val) if val > 0 && val <= logbook.len() => Ok(Validation::Valid),
+                                        _ => Ok(Validation::Invalid(
+                                            format!("Error: Invalid log entry index number. Please enter a number between 1 and {}.", logbook.len()).into()
+                                        )),
+                                    }
+                                };
+
+                                let entry_index = Text::new("Log Entry Index?")
+                                    .with_placeholder("1")
+                                    .with_help_message("Enter the index number of the log entry you wish to attach actual flight times.")
+                                    .with_validator(index_validator)
+                                    .prompt()
+                                    .expect("Input error.")
+                                    .parse::<usize>()
+                                    .expect("Invalid index") - 1;
+
+                                logbook.attach_actuals(actuals, entry_index);
+                                logbook.save();
+                                println!("Successfully attached actual times from file.");
+                            }
+                            Err(e) => eprintln!("Error parsing the actuals JSON file: {}", e),
+                        }
+                    }
+                    Err(e) => eprintln!("Error reading the actuals file: {}", e),
+                }
+                
+                main_menu()
             },
             Screen::Exit => { finished = true; Screen::Exit },
         };
