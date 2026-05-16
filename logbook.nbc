@@ -642,5 +642,22 @@
       "landed": "2026-05-11 18:20",
       "shutdown": "2026-05-11 18:23"
     }
+  },
+  {
+    "id": "b0077964-8478-4b75-8e93-2ba39bf4c5e6",
+    "planned_departure_time": "2026-05-16 04:25",
+    "planned_arrival_time": "2026-05-16 05:35",
+    "flight_number": 1997,
+    "airline": "DAL",
+    "cruise_altitude": 31000,
+    "departure_airport": "KIAD",
+    "arrival_airport": "KJFK",
+    "distance_nm": 253,
+    "route": "KIAD/30 N0473F310 JCOBY4 AGARD DCT DONIL T315 PANZE V44 CAMRN DCT KJFK/04R",
+    "aircraft": "B77L",
+    "number_passengers": 229,
+    "zero_fuel_weight": 402009.0,
+    "remarks": "Landed visually from ~ 1300 ft. Buttered.",
+    "actuals": null
   }
 ]
